@@ -46,9 +46,10 @@ public class View extends JFrame {
         paintMenus();
         this.add(this.panel, BorderLayout.CENTER);
         this.panel.add(this.button, BorderLayout.SOUTH);
-        this.menuBar.add(this.menu.add(this.menuItem));
-        this.menuBar.add(this.menuItem2);
-        this.menuBar.addSeparator();
+        this.menu.add(this.menuItem);
+        this.menu.add(this.menuItem2);
+        this.menuBar.add(this.menu);
+        
         this.setJMenuBar(menuBar);
         
     }
