@@ -13,7 +13,6 @@ public class View extends JFrame {
     private JMenu menu;
     private JMenuItem menuItem, menuItem2;
     
-    private JPanel inicial;
     private JTabbedPane fundo;
     private JTabbedPane registro;
     private JTabbedPane stock;
@@ -27,26 +26,21 @@ public class View extends JFrame {
         this.menuItem = new JMenuItem("Stock", KeyEvent.VK_T);
         this.menuItem2 = new JMenuItem("Register", KeyEvent.VK_T);
         
-        this.inicial = new JPanel();
         this.fundo = new JTabbedPane();
         this.registro = new JTabbedPane();
         this.stock = new JTabbedPane();
     }
     
     private void paintTabbedPane(){
-        this.inicial.setLayout(new BorderLayout());
-        this.inicial.setBackground(Color.white);
-        this.inicial.add("STOCK", this.stock);
-        this.inicial.add("REGISTRO", this.registro);
+        this.fundo.setLayout(new BorderLayout());
+        this.fundo.setBackground(Color.white);
+        this.fundo.add("STOCK", this.stock);
+        this.fundo.add("REGISTRO", this.registro);
     }
     
     private void paintPanel() {
         this.panel.setBackground(Color.gray);
-        this.panel.setLayout(new BorderLayout());
-        
-        this.inicial.setBackground(Color.WHITE);
-        this.inicial.setLayout(new BorderLayout());
-        this.inicial.setSize(300, 100);
+        this.panel.setLayout(new BorderLayout());        
     }
     
     private void paintButton() {
@@ -75,8 +69,8 @@ public class View extends JFrame {
         
         this.setJMenuBar(menuBar);
        
-        this.panel.add(this.inicial, BorderLayout.CENTER);
         this.panel.add(this.fundo, BorderLayout.NORTH);
+//        
     }
      
     
