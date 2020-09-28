@@ -1,5 +1,8 @@
 package br.ufjf.dcc.gmr.core.chunks.antlr.exemple.view;
 
+import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.stock.Product;
+import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.stock.Stock;
+import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.controller.ButtonRegisterStock;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,9 +13,12 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class JanelaAbas extends JFrame {
 
+    private static Stock stock;
+    
     private JTabbedPane tabbedPane;
     
     private JPanel panelRegisterProduct;
@@ -24,11 +30,14 @@ public class JanelaAbas extends JFrame {
     
     private JButton buttonRegisterProduct;
             
+    private JTable tableStock;
+    
     private JPanel panelBlue;
     
     private JPanel panelRegisterIndividual;
     private JPanel panelRegisterLegalEntity;
     
+    //colocar na mesma linha
     private JTextField lineNumber;
     private JTextField lineStreet;
     private JTextField lineNeighborhood;
@@ -53,6 +62,8 @@ public class JanelaAbas extends JFrame {
     private JButton buttonRegisterLegalEntity;
 
     public JanelaAbas() {
+        this.stock = new Stock();
+        
         this.tabbedPane = new JTabbedPane();
         
         this.panelRegisterProduct = new JPanel();
@@ -62,6 +73,8 @@ public class JanelaAbas extends JFrame {
         this.lineQuantity = new JTextField("", 50);
         
         this.buttonRegisterProduct = new JButton("REGISTER PRODUCT");
+        
+        this.tableStock = new JTable();
         
         this.lineNumber = new JTextField("", 50);
         this.lineStreet = new JTextField("", 50);
@@ -107,11 +120,9 @@ public class JanelaAbas extends JFrame {
 
         JPanel gap1 = new JPanel(new BorderLayout());
         gap1.setPreferredSize(new Dimension(300, 250));
-        gap1.setBackground(Color.RED);
 
         JPanel gap2 = new JPanel(new BorderLayout());
         gap2.setPreferredSize(new Dimension(600, 300));
-        gap2.setBackground(Color.blue);
         
         JLabel label1 = new JLabel("NAME:");
         label1.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -144,12 +155,47 @@ public class JanelaAbas extends JFrame {
 
     }
     
+    public void addProduct() throws Exception {
+        if(lineProductName.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if(lineId.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (linePrice.getText().equals("") || Double.parseDouble(linePrice.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineQuantity.getText().equals("") || Integer.parseInt(lineQuantity.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        
+        else {
+            Product product = new Product(Double.parseDouble(linePrice.getText()), lineProductName.getText(), lineId.getText());
+            
+            JanelaAbas.stock.addProduct(product, Integer.parseInt(lineQuantity.getText()));
+            JanelaAbas.stock.imprime();
+        }
+        
+        Object [] row = {lineProductName.getText(), lineId.getText(), linePrice.getText(), lineQuantity.getText()};
+        DefaultTableModel model = (DefaultTableModel) tableStock.getModel();
+        model.addRow(row);
+        
+        lineProductName.setText("");
+        lineId.setText("");
+        linePrice.setText("");
+        lineQuantity.setText("");        
+    }
+    
     private void paintButtonRegisterProduct() {
-        this.buttonRegisterProduct.setPreferredSize(new Dimension(10, 10));
+        this.buttonRegisterProduct.addActionListener(new ButtonRegisterStock(this));
     }
     
     private void paintPanelBlue() {
-      Object [][] data = {
+         Object [][] data = {
           {"qwe", "qwe", "asd", "12"}
       }; 
         
@@ -301,5 +347,7 @@ public class JanelaAbas extends JFrame {
         janelaAbas.paintFrame();
 
         janelaAbas.setVisible(true);
+        
     }
+
 }
