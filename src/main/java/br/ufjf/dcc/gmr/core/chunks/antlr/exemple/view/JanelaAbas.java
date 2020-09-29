@@ -12,6 +12,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,8 +33,12 @@ public class JanelaAbas extends JFrame {
     private JButton buttonRegisterProduct;
             
     private JTable tableStock;
+
+    public JTable getTableStock() {
+        return tableStock;
+    }
     
-    private JPanel panelBlue;
+    private JPanel panelTableStock;
     
     private JPanel panelRegisterIndividual;
     private JPanel panelRegisterLegalEntity;
@@ -99,7 +105,7 @@ public class JanelaAbas extends JFrame {
         this.buttonRegisterIndividual = new JButton("REGISTER INDIVIDUAL");
         this.buttonRegisterLegalEntity = new JButton("REGISTER LEGAL ENTITY");
         
-        this.panelBlue = new JPanel();
+        this.panelTableStock = new JPanel();
         this.panelRegisterIndividual = new JPanel();
         this.panelRegisterLegalEntity = new JPanel();
         
@@ -107,7 +113,7 @@ public class JanelaAbas extends JFrame {
 
     private void paintTabbedPane() {
         this.tabbedPane.addTab("REGISTER PRODUCT", this.panelRegisterProduct);
-        this.tabbedPane.addTab("AZUL", this.panelBlue);
+        this.tabbedPane.addTab("AZUL", this.panelTableStock);
         this.tabbedPane.addTab("REGISTER INDIVIDUAL", this.panelRegisterIndividual);
         this.tabbedPane.addTab("REGISTER LEGAL ENTITY", this.panelRegisterLegalEntity);
     }
@@ -177,13 +183,8 @@ public class JanelaAbas extends JFrame {
             Product product = new Product(Double.parseDouble(linePrice.getText()), lineProductName.getText(), lineId.getText());
             
             JanelaAbas.stock.addProduct(product, Integer.parseInt(lineQuantity.getText()));
-            JanelaAbas.stock.imprime();
         }
-        
-        Object [] row = {lineProductName.getText(), lineId.getText(), linePrice.getText(), lineQuantity.getText()};
-        DefaultTableModel model = (DefaultTableModel) tableStock.getModel();
-        model.addRow(row);
-        
+    
         lineProductName.setText("");
         lineId.setText("");
         linePrice.setText("");
@@ -194,17 +195,18 @@ public class JanelaAbas extends JFrame {
         this.buttonRegisterProduct.addActionListener(new ButtonRegisterStock(this));
     }
     
-    private void paintPanelBlue() {
-         Object [][] data = {
-          {"qwe", "qwe", "asd", "12"}
-      }; 
+    private void paintTableStock() {
+        this.panelTableStock.setLayout(new BorderLayout());
         
-      String [] nome = {"name", "id", "price", "quantity"};
+        DefaultTableModel model = (DefaultTableModel) tableStock.getModel();
+        model.addColumn("NAME");
+        model.addColumn("ID");
+        model.addColumn("PRICE");
+        model.addColumn("QUANTITY");
+
+        this.tableStock.setModel(model);
         
-      JTable table = new JTable(data, nome);
-      JScrollPane pane = new JScrollPane(table);
-      
-      this.panelBlue.add(pane);
+        this.panelTableStock.add(this.tableStock, BorderLayout.CENTER);
     }
 
     private void paintPanelRegisterPerson() {
@@ -325,7 +327,7 @@ public class JanelaAbas extends JFrame {
 
     private void paintPanel() {
         paintPanelRegisterProduct();
-        paintPanelBlue();
+        paintTableStock();
         paintPanelRegisterPerson();
     }
 
@@ -350,4 +352,237 @@ public class JanelaAbas extends JFrame {
         
     }
 
+    public static Stock getStock() {
+        return stock;
+    }
+
+    public static void setStock(Stock stock) {
+        JanelaAbas.stock = stock;
+    }
+
+    public JTabbedPane getTabbedPane() {
+        return tabbedPane;
+    }
+
+    public void setTabbedPane(JTabbedPane tabbedPane) {
+        this.tabbedPane = tabbedPane;
+    }
+
+    public JPanel getPanelRegisterProduct() {
+        return panelRegisterProduct;
+    }
+
+    public void setPanelRegisterProduct(JPanel panelRegisterProduct) {
+        this.panelRegisterProduct = panelRegisterProduct;
+    }
+
+    public JTextField getLineProductName() {
+        return lineProductName;
+    }
+
+    public void setLineProductName(JTextField lineProductName) {
+        this.lineProductName = lineProductName;
+    }
+
+    public JTextField getLineId() {
+        return lineId;
+    }
+
+    public void setLineId(JTextField lineId) {
+        this.lineId = lineId;
+    }
+
+    public JTextField getLinePrice() {
+        return linePrice;
+    }
+
+    public void setLinePrice(JTextField linePrice) {
+        this.linePrice = linePrice;
+    }
+
+    public JTextField getLineQuantity() {
+        return lineQuantity;
+    }
+
+    public void setLineQuantity(JTextField lineQuantity) {
+        this.lineQuantity = lineQuantity;
+    }
+
+    public JButton getButtonRegisterProduct() {
+        return buttonRegisterProduct;
+    }
+
+    public void setButtonRegisterProduct(JButton buttonRegisterProduct) {
+        this.buttonRegisterProduct = buttonRegisterProduct;
+    }
+
+    public JPanel getPanelBlue() {
+        return panelTableStock;
+    }
+
+    public void setPanelBlue(JPanel panelBlue) {
+        this.panelTableStock = panelBlue;
+    }
+
+    public JPanel getPanelRegisterIndividual() {
+        return panelRegisterIndividual;
+    }
+
+    public void setPanelRegisterIndividual(JPanel panelRegisterIndividual) {
+        this.panelRegisterIndividual = panelRegisterIndividual;
+    }
+
+    public JPanel getPanelRegisterLegalEntity() {
+        return panelRegisterLegalEntity;
+    }
+
+    public void setPanelRegisterLegalEntity(JPanel panelRegisterLegalEntity) {
+        this.panelRegisterLegalEntity = panelRegisterLegalEntity;
+    }
+
+    public JTextField getLineNumber() {
+        return lineNumber;
+    }
+
+    public void setLineNumber(JTextField lineNumber) {
+        this.lineNumber = lineNumber;
+    }
+
+    public JTextField getLineStreet() {
+        return lineStreet;
+    }
+
+    public void setLineStreet(JTextField lineStreet) {
+        this.lineStreet = lineStreet;
+    }
+
+    public JTextField getLineNeighborhood() {
+        return lineNeighborhood;
+    }
+
+    public void setLineNeighborhood(JTextField lineNeighborhood) {
+        this.lineNeighborhood = lineNeighborhood;
+    }
+
+    public JTextField getLineCep() {
+        return lineCep;
+    }
+
+    public void setLineCep(JTextField lineCep) {
+        this.lineCep = lineCep;
+    }
+
+    public JTextField getLineCity() {
+        return lineCity;
+    }
+
+    public void setLineCity(JTextField lineCity) {
+        this.lineCity = lineCity;
+    }
+
+    public JTextField getLineState() {
+        return lineState;
+    }
+
+    public void setLineState(JTextField lineState) {
+        this.lineState = lineState;
+    }
+
+    public JTextField getLineCountry() {
+        return lineCountry;
+    }
+
+    public void setLineCountry(JTextField lineCountry) {
+        this.lineCountry = lineCountry;
+    }
+
+    public JTextField getLineEmail() {
+        return lineEmail;
+    }
+
+    public void setLineEmail(JTextField lineEmail) {
+        this.lineEmail = lineEmail;
+    }
+
+    public JTextField getLinePassword() {
+        return linePassword;
+    }
+
+    public void setLinePassword(JTextField linePassword) {
+        this.linePassword = linePassword;
+    }
+
+    public JTextField getLineDdd() {
+        return lineDdd;
+    }
+
+    public void setLineDdd(JTextField lineDdd) {
+        this.lineDdd = lineDdd;
+    }
+
+    public JTextField getLinePhoneNumber() {
+        return linePhoneNumber;
+    }
+
+    public void setLinePhoneNumber(JTextField linePhoneNumber) {
+        this.linePhoneNumber = linePhoneNumber;
+    }
+
+    public JTextField getLinePersonName() {
+        return linePersonName;
+    }
+
+    public void setLinePersonName(JTextField linePersonName) {
+        this.linePersonName = linePersonName;
+    }
+
+    public JTextField getLineSurname() {
+        return lineSurname;
+    }
+
+    public void setLineSurname(JTextField lineSurname) {
+        this.lineSurname = lineSurname;
+    }
+
+    public JTextField getLineCpf() {
+        return lineCpf;
+    }
+
+    public void setLineCpf(JTextField lineCpf) {
+        this.lineCpf = lineCpf;
+    }
+
+    public JTextField getLineRg() {
+        return lineRg;
+    }
+
+    public void setLineRg(JTextField lineRg) {
+        this.lineRg = lineRg;
+    }
+
+    public JTextField getLineBirthYear() {
+        return lineBirthYear;
+    }
+
+    public void setLineBirthYear(JTextField lineBirthYear) {
+        this.lineBirthYear = lineBirthYear;
+    }
+
+    public JButton getButtonRegisterIndividual() {
+        return buttonRegisterIndividual;
+    }
+
+    public void setButtonRegisterIndividual(JButton buttonRegisterIndividual) {
+        this.buttonRegisterIndividual = buttonRegisterIndividual;
+    }
+
+    public JButton getButtonRegisterLegalEntity() {
+        return buttonRegisterLegalEntity;
+    }
+
+    public void setButtonRegisterLegalEntity(JButton buttonRegisterLegalEntity) {
+        this.buttonRegisterLegalEntity = buttonRegisterLegalEntity;
+    }
+    
+    
 }

@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,16 +19,30 @@ import java.util.logging.Logger;
  */
 public class ButtonRegisterStock implements ActionListener{
     private JanelaAbas panel;
+    private JTable table;
+    private DefaultTableModel model;
 
     public ButtonRegisterStock(JanelaAbas panel) {
         this.panel = panel;
+        this.table = panel.getTableStock();
+        this.model = (DefaultTableModel) this.table.getModel();
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            
+            String name = this.panel.getLineProductName().getText();
+            String id = this.panel.getLineId().getText();
+            String price = this.panel.getLinePrice().getText();
+            String quantity = this.panel.getLineQuantity().getText(); 
+            
+            Object [] row = {name, id, price, quantity};
+            this.model.addRow(row);
+           
             this.panel.addProduct();
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) {
             Logger.getLogger(ButtonRegisterStock.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
