@@ -32,6 +32,7 @@ public class JanelaAbas extends JFrame {
 
     private JPanel panelTableStock;
 
+    private JPanel panelRegister;
     private JPanel panelRegisterIndividual;
     private JPanel panelRegisterLegalEntity;
 
@@ -43,7 +44,8 @@ public class JanelaAbas extends JFrame {
     private JTextField lineCity;
     private JTextField lineState;
     private JTextField lineCountry;
-
+    
+    private JTextField lineDate;
     private JTextField lineEmail;
     private JTextField linePassword;
     private JTextField lineDdd;
@@ -58,7 +60,7 @@ public class JanelaAbas extends JFrame {
 
     private JButton buttonRegisterIndividual;
     private JButton buttonRegisterLegalEntity;
-
+    
     public JanelaAbas() {
         this.stock = new Stock();
 
@@ -82,6 +84,7 @@ public class JanelaAbas extends JFrame {
         this.lineState = new JTextField("", 50);
         this.lineCountry = new JTextField("", 50);
 
+        this.lineDate = new JTextField("",50);
         this.lineEmail = new JTextField("", 50);
         this.linePassword = new JTextField("", 50);
         this.lineDdd = new JTextField("", 50);
@@ -98,6 +101,8 @@ public class JanelaAbas extends JFrame {
         this.buttonRegisterLegalEntity = new JButton("REGISTER LEGAL ENTITY");
 
         this.panelTableStock = new JPanel();
+        
+        this.panelRegister = new JPanel();
         this.panelRegisterIndividual = new JPanel();
         this.panelRegisterLegalEntity = new JPanel();
 
@@ -105,7 +110,8 @@ public class JanelaAbas extends JFrame {
 
     private void paintTabbedPane() {
         this.tabbedPane.addTab("REGISTER PRODUCT", this.panelRegisterProduct);
-        this.tabbedPane.addTab("AZUL", this.panelTableStock);
+        this.tabbedPane.addTab("PRODUCTS STOCK", this.panelTableStock);
+        this.tabbedPane.addTab("REGISTER", this.panelRegister);
         this.tabbedPane.addTab("REGISTER INDIVIDUAL", this.panelRegisterIndividual);
         this.tabbedPane.addTab("REGISTER LEGAL ENTITY", this.panelRegisterLegalEntity);
     }
@@ -189,12 +195,12 @@ public class JanelaAbas extends JFrame {
         this.tableStock.setVisible(true);
         this.panelTableStock.add(new JScrollPane(this.tableStock), BorderLayout.CENTER);
     }
-
-    private void paintPanelRegisterPerson() {
-        this.panelRegisterIndividual.setLayout(new BorderLayout());
-
-        JPanel panel = new JPanel(new GridLayout(20, 1));
-        panel.setPreferredSize(new Dimension(500, 300));
+    
+    private void paintPanelRegister(){
+        this.panelRegister.setLayout(new BorderLayout());
+        
+        JPanel panel1 = new JPanel(new GridLayout(20, 1));
+        panel1.setPreferredSize(new Dimension(500, 300));
 
         JPanel panel2 = new JPanel(new GridLayout(20, 1));
         panel2.setPreferredSize(new Dimension(500, 300));
@@ -229,14 +235,14 @@ public class JanelaAbas extends JFrame {
         JLabel label9 = new JLabel("SURNAME:");
         label9.setVerticalAlignment(SwingConstants.BOTTOM);
 
-        JLabel label10 = new JLabel("CPF:");
-        label10.setVerticalAlignment(SwingConstants.BOTTOM);
-
-        JLabel label11 = new JLabel("RG:");
-        label11.setVerticalAlignment(SwingConstants.BOTTOM);
-
-        JLabel label12 = new JLabel("BIRTH YEAR:");
-        label12.setVerticalAlignment(SwingConstants.BOTTOM);
+//        JLabel label10 = new JLabel("CPF:");
+//        label10.setVerticalAlignment(SwingConstants.BOTTOM);
+//
+//        JLabel label11 = new JLabel("RG:");
+//        label11.setVerticalAlignment(SwingConstants.BOTTOM);
+//
+//        JLabel label12 = new JLabel("BIRTH YEAR:");
+//        label12.setVerticalAlignment(SwingConstants.BOTTOM);
 
         JLabel label13 = new JLabel("EMAIL:");
         label13.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -250,65 +256,69 @@ public class JanelaAbas extends JFrame {
         JLabel label16 = new JLabel("PHONE NUMBER:");
         label16.setVerticalAlignment(SwingConstants.BOTTOM);
 
-        panel.add(label1);
-        panel.add(this.lineNumber);
+        panel1.add(label1);
+        panel1.add(this.lineNumber);
         panel2.add(label2);
         panel2.add(this.lineStreet);
 
-        panel.add(label3);
-        panel.add(this.lineNeighborhood);
+        panel1.add(label3);
+        panel1.add(this.lineNeighborhood);
         panel2.add(label4);
         panel2.add(this.lineCep);
 
-        panel.add(label5);
-        panel.add(this.lineCity);
+        panel1.add(label5);
+        panel1.add(this.lineCity);
         panel2.add(label6);
         panel2.add(this.lineState);
 
-        panel.add(label7);
-        panel.add(this.lineCountry);
+        panel1.add(label7);
+        panel1.add(this.lineCountry);
         panel2.add(new JLabel(""));
         panel2.add(new JLabel(""));
 
-        panel.add(label8);
-        panel.add(this.linePersonName);
+        panel1.add(label8);
+        panel1.add(this.linePersonName);
         panel2.add(label9);
         panel2.add(this.lineSurname);
 
-        panel.add(label10);
-        panel.add(this.lineCpf);
-        panel2.add(label11);
-        panel2.add(this.lineRg);
+//        panel1.add(label10);
+//        panel1.add(this.lineCpf);
+//        panel2.add(label11);
+//        panel2.add(this.lineRg);
 
-        panel.add(label12);
-        panel.add(this.lineBirthYear);
-        panel2.add(new JLabel(""));
-        panel2.add(new JLabel(""));
+//        panel1.add(label12);
+//        panel1.add(this.lineBirthYear);
+//        panel2.add(new JLabel(""));
+//        panel2.add(new JLabel(""));
 
-        panel.add(label13);
-        panel.add(this.lineEmail);
+        panel1.add(label13);
+        panel1.add(this.lineEmail);
         panel2.add(label14);
         panel2.add(this.linePassword);
 
-        panel.add(label15);
-        panel.add(this.lineDdd);
+        panel1.add(label15);
+        panel1.add(this.lineDdd);
         panel2.add(label16);
         panel2.add(this.linePhoneNumber);
 
-        panel.add(new JLabel(""));
-        panel.add(this.buttonRegisterIndividual);
+        panel1.add(new JLabel(""));
+        panel1.add(this.buttonRegisterIndividual);
         panel2.add(new JLabel(""));
-        panel2.add(new JLabel(""));
+        panel2.add(this.buttonRegisterLegalEntity);
 
-        this.panelRegisterIndividual.add(panel, BorderLayout.WEST);
-        this.panelRegisterIndividual.add(panel2, BorderLayout.CENTER);
-        this.panelRegisterIndividual.add(gap2, BorderLayout.EAST);
-
+        this.panelRegister.add(panel1, BorderLayout.WEST);
+        this.panelRegister.add(panel2, BorderLayout.CENTER);
+        this.panelRegister.add(gap2, BorderLayout.EAST);
+    }
+    
+    private void paintPanelRegisterPerson() {
+        this.panelRegisterIndividual.setLayout(new BorderLayout());
     }
 
     private void paintPanel() {
         paintPanelRegisterProduct();
         paintTableStock();
+        paintPanelRegister();
         paintPanelRegisterPerson();
     }
 

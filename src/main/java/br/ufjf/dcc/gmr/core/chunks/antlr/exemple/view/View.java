@@ -10,66 +10,71 @@ public class View extends JFrame {
     private JPanel panel;
     private JButton button;
     private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem menuItem, menuItem2;
+//    private JMenu menu;
+//    private JMenuItem menuItem, menuItem2;
     
     private JTabbedPane fundo;
-    private JTabbedPane registro;
-    private JTabbedPane stock;
+    private JPanel registro;
+    private JPanel stock;
     
     
     public View() {
         this.panel = new JPanel();
         this.button = new JButton("botao");
-        this.menuBar = new JMenuBar();
-        this.menu = new JMenu("Menu1");
-        this.menuItem = new JMenuItem("Stock", KeyEvent.VK_T);
-        this.menuItem2 = new JMenuItem("Register", KeyEvent.VK_T);
+//        this.menuBar = new JMenuBar();
+//        this.menu = new JMenu("Menu1");
+//        this.menuItem = new JMenuItem("Stock", KeyEvent.VK_T);
+//        this.menuItem2 = new JMenuItem("Register", KeyEvent.VK_T);
         
         this.fundo = new JTabbedPane();
-        this.registro = new JTabbedPane();
-        this.stock = new JTabbedPane();
+        this.registro = new JPanel();
+        this.stock = new JPanel();
     }
     
     private void paintTabbedPane(){
+        paintPanel();
         this.fundo.setLayout(new BorderLayout());
         this.fundo.setBackground(Color.white);
         this.fundo.add("STOCK", this.stock);
         this.fundo.add("REGISTRO", this.registro);
+        
     }
     
     private void paintPanel() {
         this.panel.setBackground(Color.gray);
-        this.panel.setLayout(new BorderLayout());        
+        this.panel.setLayout(new BorderLayout());      
+        this.stock.setLayout(new BorderLayout());
+        this.registro.setLayout(new BorderLayout());
     }
     
     private void paintButton() {
         this.button.addActionListener(new ButtonActionListener(this));
     }
     
-    private void paintMenus(){
-        this.menuBar.setBackground(Color.yellow);
-        this.menu.setBackground(Color.green);
-        this.menuItem.setBackground(Color.pink);
-        this.menuItem2.setBackground(Color.pink);
-        this.menuItem.setBorder(BorderFactory.createLineBorder(Color.black));
-        this.menuItem2.setBorder(BorderFactory.createLineBorder(Color.black));
-    }
+//    private void paintMenus(){
+//        this.menuBar.setBackground(Color.yellow);
+//        this.menu.setBackground(Color.green);
+//        this.menuItem.setBackground(Color.pink);
+//        this.menuItem2.setBackground(Color.pink);
+//        this.menuItem.setBorder(BorderFactory.createLineBorder(Color.black));
+//        this.menuItem2.setBorder(BorderFactory.createLineBorder(Color.black));
+//    }
     
     private void paintFrame() {
         paintPanel();
         paintButton();
-        paintMenus();
+//        paintMenus();
         paintTabbedPane();
         this.add(this.panel, BorderLayout.CENTER);
         this.panel.add(this.button, BorderLayout.SOUTH);
-        this.menu.add(this.menuItem);
-        this.menu.add(this.menuItem2);
-        this.menuBar.add(this.menu);
-        
-        this.setJMenuBar(menuBar);
+//        this.menu.add(this.menuItem);
+//        this.menu.add(this.menuItem2);
+//        this.menuBar.add(this.menu);
+//        
+//        this.setJMenuBar(menuBar);
        
-        this.panel.add(this.fundo, BorderLayout.NORTH);
+        this.add(this.fundo, BorderLayout.NORTH);
+        
 //        
     }
      
