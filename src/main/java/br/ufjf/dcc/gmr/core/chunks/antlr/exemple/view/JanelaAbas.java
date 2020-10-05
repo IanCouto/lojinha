@@ -2,11 +2,13 @@ package br.ufjf.dcc.gmr.core.chunks.antlr.exemple.view;
 
 import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.stock.Product;
 import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.stock.Stock;
+import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.controller.ButtonRegisterIndividual;
 import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.controller.ButtonRegisterStock;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.*;
+
 import javax.swing.table.DefaultTableModel;
 
 public class JanelaAbas extends JFrame {
@@ -25,10 +27,6 @@ public class JanelaAbas extends JFrame {
     private JButton buttonRegisterProduct;
 
     private JTable tableStock;
-
-    public JTable getTableStock() {
-        return tableStock;
-    }
 
     private JPanel panelTableStock;
 
@@ -53,10 +51,6 @@ public class JanelaAbas extends JFrame {
 
     private JTextField linePersonName;
     private JTextField lineSurname;
-
-    private JTextField lineCpf;
-    private JTextField lineRg;
-    private JTextField lineBirthYear;
 
     private JButton buttonRegisterIndividual;
     private JButton buttonRegisterLegalEntity;
@@ -92,11 +86,7 @@ public class JanelaAbas extends JFrame {
 
         this.linePersonName = new JTextField("", 50);
         this.lineSurname = new JTextField("", 50);
-
-        this.lineCpf = new JTextField("", 50);
-        this.lineRg = new JTextField("", 50);
-        this.lineBirthYear = new JTextField("", 50);
-
+        
         this.buttonRegisterIndividual = new JButton("REGISTER INDIVIDUAL");
         this.buttonRegisterLegalEntity = new JButton("REGISTER LEGAL ENTITY");
 
@@ -234,16 +224,7 @@ public class JanelaAbas extends JFrame {
 
         JLabel label9 = new JLabel("SURNAME:");
         label9.setVerticalAlignment(SwingConstants.BOTTOM);
-
-//        JLabel label10 = new JLabel("CPF:");
-//        label10.setVerticalAlignment(SwingConstants.BOTTOM);
-//
-//        JLabel label11 = new JLabel("RG:");
-//        label11.setVerticalAlignment(SwingConstants.BOTTOM);
-//
-//        JLabel label12 = new JLabel("BIRTH YEAR:");
-//        label12.setVerticalAlignment(SwingConstants.BOTTOM);
-
+        
         JLabel label13 = new JLabel("EMAIL:");
         label13.setVerticalAlignment(SwingConstants.BOTTOM);
 
@@ -311,6 +292,69 @@ public class JanelaAbas extends JFrame {
         this.panelRegister.add(gap2, BorderLayout.EAST);
     }
     
+    public void addPerson() throws Exception {
+        
+        if(lineNumber.getText().equals("")|| Integer.parseInt(lineQuantity.getText()) <= 0){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineStreet.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineNeighborhood.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineCep.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineCity.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineState.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineCountry.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (linePersonName.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineSurname.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineEmail.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (linePassword.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (lineDdd.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else if (linePhoneNumber.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
+            throw new Exception();
+        }
+        else {
+            System.out.println("OK");
+        }
+    }
+    
+    private void paintButtonRegisterIndividual() {
+        this.buttonRegisterIndividual.addActionListener(new ButtonRegisterIndividual(this));
+    }
+    
     private void paintPanelRegisterPerson() {
         this.panelRegisterIndividual.setLayout(new BorderLayout());
     }
@@ -326,6 +370,7 @@ public class JanelaAbas extends JFrame {
         paintPanel();
         paintTabbedPane();
         paintButtonRegisterProduct();
+        paintButtonRegisterIndividual();
 
         this.add(this.tabbedPane, BorderLayout.CENTER);
     }
@@ -535,30 +580,6 @@ public class JanelaAbas extends JFrame {
         this.lineSurname = lineSurname;
     }
 
-    public JTextField getLineCpf() {
-        return lineCpf;
-    }
-
-    public void setLineCpf(JTextField lineCpf) {
-        this.lineCpf = lineCpf;
-    }
-
-    public JTextField getLineRg() {
-        return lineRg;
-    }
-
-    public void setLineRg(JTextField lineRg) {
-        this.lineRg = lineRg;
-    }
-
-    public JTextField getLineBirthYear() {
-        return lineBirthYear;
-    }
-
-    public void setLineBirthYear(JTextField lineBirthYear) {
-        this.lineBirthYear = lineBirthYear;
-    }
-
     public JButton getButtonRegisterIndividual() {
         return buttonRegisterIndividual;
     }
@@ -573,6 +594,38 @@ public class JanelaAbas extends JFrame {
 
     public void setButtonRegisterLegalEntity(JButton buttonRegisterLegalEntity) {
         this.buttonRegisterLegalEntity = buttonRegisterLegalEntity;
+    }
+
+    public JTable getTableStock() {
+        return tableStock;
+    }
+
+    public void setTableStock(JTable tableStock) {
+        this.tableStock = tableStock;
+    }
+
+    public JPanel getPanelTableStock() {
+        return panelTableStock;
+    }
+
+    public void setPanelTableStock(JPanel panelTableStock) {
+        this.panelTableStock = panelTableStock;
+    }
+
+    public JPanel getPanelRegister() {
+        return panelRegister;
+    }
+
+    public void setPanelRegister(JPanel panelRegister) {
+        this.panelRegister = panelRegister;
+    }
+
+    public JTextField getLineDate() {
+        return lineDate;
+    }
+
+    public void setLineDate(JTextField lineDate) {
+        this.lineDate = lineDate;
     }
 
 }

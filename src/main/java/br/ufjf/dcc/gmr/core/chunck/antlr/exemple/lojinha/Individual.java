@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Individual extends Person {
 
-    private int birthYear;
+    private String birthYear;
     private String cpf;
     private String rg;
 
@@ -21,24 +21,24 @@ public class Individual extends Person {
         
     }
 
-    public Individual(int birthYear, String cpf, String rg) {
+    public Individual(String birthYear, String cpf, String rg) {
         this.birthYear = birthYear;
         this.cpf = cpf;
         this.rg = rg;
     }
 
-    public Individual(int birthYear, String cpf, String rg, String name, String surname, Adress adress) {
+    public Individual(String birthYear, String cpf, String rg, String name, String surname, Adress adress) {
         super(name, surname, adress);
         this.birthYear = birthYear;
         this.cpf = cpf;
         this.rg = rg;
     }
 
-    public int getBirthYear() {
+    public String getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(int birthYear) {
+    public void setBirthYear(String birthYear) {
         this.birthYear = birthYear;
     }
 
@@ -62,7 +62,7 @@ public class Individual extends Person {
         Scanner teclado = new Scanner(System.in);
         System.out.println("CREATING INDIVIDUAL: ");
         System.out.println("Birth year: ");
-        this.birthYear = Integer.parseInt(teclado.nextLine());
+        this.birthYear = teclado.nextLine();
         System.out.println("CPF: ");
         this.cpf = teclado.nextLine();
         System.out.println("RG: ");

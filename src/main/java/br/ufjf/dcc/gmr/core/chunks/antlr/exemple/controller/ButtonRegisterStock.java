@@ -31,6 +31,7 @@ public class ButtonRegisterStock implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             this.panel.addProduct();
+            
             String name = this.panel.getLineProductName().getText();
             String id = this.panel.getLineId().getText();
             String price = this.panel.getLinePrice().getText();
