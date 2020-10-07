@@ -20,13 +20,15 @@ public class LegalEntity extends Person {
         
     }
 
-    public LegalEntity(String cnpj) {
+    public LegalEntity(String cnpj, String boss) {
         this.cnpj = cnpj;
+        this.boss = boss;
     }
 
-    public LegalEntity(String cnpj, String name, String surname, Adress adress) {
+    public LegalEntity(String cnpj, String boss, String name, String surname, Adress adress) {
         super(name, surname, adress);
         this.cnpj = cnpj;
+        this.boss = boss;
     }
 
     public String getCnpj() {
@@ -35,6 +37,14 @@ public class LegalEntity extends Person {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public String getBoss() {
+        return boss;
+    }
+
+    public void setBoss(String boss) {
+        this.boss = boss;
     }
     
     public void createLegalEntity(){

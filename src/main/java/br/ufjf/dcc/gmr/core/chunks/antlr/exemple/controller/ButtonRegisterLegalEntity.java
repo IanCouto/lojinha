@@ -5,7 +5,7 @@
  */
 package br.ufjf.dcc.gmr.core.chunks.antlr.exemple.controller;
 
-import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.view.DesktopIndividual;
+import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.view.DesktopLegalEntity;
 import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.view.JanelaAbas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,11 +14,11 @@ import java.awt.event.ActionListener;
  *
  * @author DELL
  */
-public class ButtonRegisterIndividual implements ActionListener {
+public class ButtonRegisterLegalEntity implements ActionListener {
     private JanelaAbas frame;
-    private DesktopIndividual desktop;
+    private DesktopLegalEntity desktop;
   
-    public ButtonRegisterIndividual(JanelaAbas frame, DesktopIndividual desktop) {
+    public ButtonRegisterLegalEntity(JanelaAbas frame, DesktopLegalEntity desktop) {
         this.frame = frame;
         this.desktop = desktop;
     }
@@ -26,7 +26,7 @@ public class ButtonRegisterIndividual implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            this.desktop.addIndividual();
+            this.desktop.addLegalEntity();
             
             this.frame.getLineNumber().setText("");
             this.frame.getLineStreet().setText("");
@@ -42,13 +42,10 @@ public class ButtonRegisterIndividual implements ActionListener {
             this.frame.getLineDdd().setText("");
             this.frame.getLinePhoneNumber().setText("");
             
-            this.desktop.getLineCpf().setText("");
-            this.desktop.getLineRg().setText("");
-            this.desktop.getLineBirth().setText("");
-            
+            this.desktop.getLineCnpj().setText("");
+            this.desktop.getLineBoss().setText("");
         } 
         catch (Exception ex) {
         }
     }
 }
-

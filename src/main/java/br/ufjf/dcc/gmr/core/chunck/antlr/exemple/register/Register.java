@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha;
+package br.ufjf.dcc.gmr.core.chunck.antlr.exemple.register;
 
+import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha.Person;
 import java.util.Scanner;
 
 /**

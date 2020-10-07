@@ -1,11 +1,11 @@
-package br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha.register;
+package br.ufjf.dcc.gmr.core.chunck.antlr.exemple.register;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha.Register;
+import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.register.Register;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +31,16 @@ public class RegisterStock {
     }
 
     public boolean contain(Register register) {
-        for(int i = 0; i<RegisterStock.list.size(); i++) {
+        for(int i = 0; i < RegisterStock.list.size(); i++) {
             if(RegisterStock.list.get(i).getEmail().equals(register.getEmail()))
                 return true;
         }
         return false;
+    }
+    
+    public void imprime() {
+        for(int i = 0; i < RegisterStock.list.size(); i++) {
+            RegisterStock.list.get(i).imprime();
+        }
     }
 }

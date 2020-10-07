@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha;
-import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha.register.RegisterStock;
+import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.register.Register;
+import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.register.RegisterStock;
 import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.stock.Product;
 import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.stock.Stock;
-import java.io.PrintStream;
 import java.util.Scanner;
 /**
  *

@@ -8,8 +8,8 @@ package br.ufjf.dcc.gmr.core.chunck.antlr.exemple.stock;
 import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha.Adress;
 import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha.Employee;
 import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha.Person;
-import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha.Register;
-import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.lojinha.register.RegisterStock;
+import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.register.Register;
+import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.register.RegisterStock;
 import java.util.Scanner;
 
 

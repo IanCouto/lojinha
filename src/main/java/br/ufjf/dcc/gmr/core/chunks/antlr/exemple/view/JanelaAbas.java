@@ -1,8 +1,9 @@
 package br.ufjf.dcc.gmr.core.chunks.antlr.exemple.view;
 
+import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.register.RegisterStock;
 import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.stock.Product;
 import br.ufjf.dcc.gmr.core.chunck.antlr.exemple.stock.Stock;
-import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.controller.ButtonRegisterIndividual;
+import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.controller.ButtonRegisterPerson;
 import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.controller.ButtonRegisterStock;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -14,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class JanelaAbas extends JFrame {
 
     private static Stock stock;
+    private static RegisterStock registerStock;
 
     private JTabbedPane tabbedPane;
 
@@ -56,7 +58,8 @@ public class JanelaAbas extends JFrame {
     private JButton buttonRegisterLegalEntity;
     
     public JanelaAbas() {
-        this.stock = new Stock();
+        JanelaAbas.stock = new Stock();
+        JanelaAbas.registerStock = new RegisterStock();
 
         this.tabbedPane = new JTabbedPane();
 
@@ -262,16 +265,6 @@ public class JanelaAbas extends JFrame {
         panel2.add(label9);
         panel2.add(this.lineSurname);
 
-//        panel1.add(label10);
-//        panel1.add(this.lineCpf);
-//        panel2.add(label11);
-//        panel2.add(this.lineRg);
-
-//        panel1.add(label12);
-//        panel1.add(this.lineBirthYear);
-//        panel2.add(new JLabel(""));
-//        panel2.add(new JLabel(""));
-
         panel1.add(label13);
         panel1.add(this.lineEmail);
         panel2.add(label14);
@@ -292,9 +285,9 @@ public class JanelaAbas extends JFrame {
         this.panelRegister.add(gap2, BorderLayout.EAST);
     }
     
-    public void addPerson() throws Exception {
+    public void addPerson(int num) throws Exception {
         
-        if(lineNumber.getText().equals("")|| Integer.parseInt(lineQuantity.getText()) <= 0){
+        if(lineNumber.getText().equals("") || Integer.parseInt(lineNumber.getText()) <= 0){
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
         }
@@ -347,12 +340,23 @@ public class JanelaAbas extends JFrame {
             throw new Exception();
         }
         else {
-            System.out.println("OK");
+            if(num == 1) {
+                DesktopIndividual di = new DesktopIndividual(this);
+                di.paintFrame();
+            } 
+            else if (num == 2) {
+                DesktopLegalEntity dl = new DesktopLegalEntity(this);
+                dl.paintFrame();
+            }
         }
     }
     
     private void paintButtonRegisterIndividual() {
-        this.buttonRegisterIndividual.addActionListener(new ButtonRegisterIndividual(this));
+        this.buttonRegisterIndividual.addActionListener(new ButtonRegisterPerson(this, 1));
+    }
+    
+    private void paintButtonRegisterLegalEntity() {
+        this.buttonRegisterLegalEntity.addActionListener(new ButtonRegisterPerson(this, 2));
     }
     
     private void paintPanelRegisterPerson() {
@@ -371,6 +375,7 @@ public class JanelaAbas extends JFrame {
         paintTabbedPane();
         paintButtonRegisterProduct();
         paintButtonRegisterIndividual();
+        paintButtonRegisterLegalEntity();
 
         this.add(this.tabbedPane, BorderLayout.CENTER);
     }
@@ -396,6 +401,14 @@ public class JanelaAbas extends JFrame {
         JanelaAbas.stock = stock;
     }
 
+    public static RegisterStock getRegisterStock() {
+        return registerStock;
+    }
+
+    public static void setRegisterStock(RegisterStock registerStock) {
+        JanelaAbas.registerStock = registerStock;
+    }
+    
     public JTabbedPane getTabbedPane() {
         return tabbedPane;
     }
