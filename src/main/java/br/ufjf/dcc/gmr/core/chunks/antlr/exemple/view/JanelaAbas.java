@@ -30,12 +30,10 @@ public class JanelaAbas extends JFrame {
     private JButton buttonRegisterProduct;
 
     private JTable tableStock;
-
     private JPanel panelTableStock;
 
     private JPanel panelRegister;
     private JPanel panelSaleRegister;
-//    private JPanel panelRegisterLegalEntity;
 
     //colocar na mesma linha
     private JTextField lineNumber;
@@ -57,6 +55,9 @@ public class JanelaAbas extends JFrame {
 
     private JButton buttonRegisterIndividual;
     private JButton buttonRegisterLegalEntity;
+    
+    private JTable tableRegister;
+    private JPanel panelTableRegister;
     
     private JButton buttonRegisterSale;
     
@@ -102,16 +103,17 @@ public class JanelaAbas extends JFrame {
         
         this.panelRegister = new JPanel();
         this.panelSaleRegister = new JPanel();
-//        this.panelRegisterLegalEntity = new JPanel();
 
+        this.tableRegister = new JTable();
+        this.panelTableRegister = new JPanel();
     }
 
     private void paintTabbedPane() {
         this.tabbedPane.addTab("REGISTER PRODUCT", this.panelRegisterProduct);
         this.tabbedPane.addTab("PRODUCTS STOCK", this.panelTableStock);
-        this.tabbedPane.addTab("REGISTER", this.panelRegister);
+        this.tabbedPane.addTab("REGISTER PERSON", this.panelRegister);
+        this.tabbedPane.addTab("PERSONS", this.panelTableRegister);
         this.tabbedPane.addTab("SALE", this.panelSaleRegister);
-//        this.tabbedPane.addTab("REGISTER LEGAL ENTITY", this.panelRegisterLegalEntity);
     }
 
     private void paintPanelRegisterProduct() {
@@ -364,58 +366,73 @@ public class JanelaAbas extends JFrame {
         this.buttonRegisterLegalEntity.addActionListener(new ButtonRegisterPerson(this, 2));
     }
     
-    private void paintPanelSaleRegister() {
-        this.panelSaleRegister.setLayout(new BorderLayout());
+    private void paintTableRegister() {
+        this.panelTableRegister.setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel(new GridLayout(10, 1));
-        panel.setPreferredSize(new Dimension(500, 300));
-
-        JPanel gap1 = new JPanel(new BorderLayout());
-        gap1.setPreferredSize(new Dimension(300, 250));
-
-        JPanel gap2 = new JPanel(new BorderLayout());
-        gap2.setPreferredSize(new Dimension(600, 300));
-
-        JLabel label1 = new JLabel("PRODUTO: ");
-        label1.setVerticalAlignment(SwingConstants.BOTTOM);
-
-        JLabel label2 = new JLabel("ID: ");
-        label2.setVerticalAlignment(SwingConstants.BOTTOM);
-
-        JLabel label3 = new JLabel("QUANTITY: ");
-        label3.setVerticalAlignment(SwingConstants.BOTTOM);
-
-//        JLabel label4 = new JLabel("TOTAL:");
-//        label4.setVerticalAlignment(SwingConstants.BOTTOM);
-
-        JLabel label5 = new JLabel("");
-
-        panel.add(label1);
-        panel.add(this.lineProductName);
-        panel.add(label2);
-        panel.add(this.lineId);
-        panel.add(label3);
-        panel.add(this.lineQuantity);
-//        panel.add(label4);
-//        panel.add(this.lineQuantity);
-        panel.add(label5);
-        panel.add(this.buttonRegisterSale);
-
-        this.panelSaleRegister.add(panel, BorderLayout.WEST);
-        this.panelSaleRegister.add(gap1, BorderLayout.SOUTH);
-        this.panelSaleRegister.add(gap2, BorderLayout.CENTER);
-
+        DefaultTableModel model = (DefaultTableModel) tableRegister.getModel();
+        model.addColumn("NAME");
+        model.addColumn("Surname");
+        model.addColumn("EMAIL");
+        model.addColumn("PHONE NUMBER");
+        
+        this.tableRegister.setModel(model);
+        this.tableRegister.setVisible(true);
+        this.panelTableRegister.add(new JScrollPane(this.tableRegister), BorderLayout.CENTER);
     }
     
-    private void paintButtonSaleRegister(){
-        this.buttonRegisterSale.addActionListener(new ButtonRegisterSale(this));
-    }
+//    private void paintPanelSaleRegister() {
+//        this.panelSaleRegister.setLayout(new BorderLayout());
+//
+//        JPanel panel = new JPanel(new GridLayout(10, 1));
+//        panel.setPreferredSize(new Dimension(500, 300));
+//
+//        JPanel gap1 = new JPanel(new BorderLayout());
+//        gap1.setPreferredSize(new Dimension(300, 250));
+//
+//        JPanel gap2 = new JPanel(new BorderLayout());
+//        gap2.setPreferredSize(new Dimension(600, 300));
+//
+//        JLabel label1 = new JLabel("PRODUTO: ");
+//        label1.setVerticalAlignment(SwingConstants.BOTTOM);
+//
+//        JLabel label2 = new JLabel("ID: ");
+//        label2.setVerticalAlignment(SwingConstants.BOTTOM);
+//
+//        JLabel label3 = new JLabel("QUANTITY: ");
+//        label3.setVerticalAlignment(SwingConstants.BOTTOM);
+//
+////        JLabel label4 = new JLabel("TOTAL:");
+////        label4.setVerticalAlignment(SwingConstants.BOTTOM);
+//
+//        JLabel label5 = new JLabel("");
+//
+//        panel.add(label1);
+//        panel.add(this.lineProductName);
+//        panel.add(label2);
+//        panel.add(this.lineId);
+//        panel.add(label3);
+//        panel.add(this.lineQuantity);
+////        panel.add(label4);
+////        panel.add(this.lineQuantity);
+//        panel.add(label5);
+//        panel.add(this.buttonRegisterSale);
+//
+//        this.panelSaleRegister.add(panel, BorderLayout.WEST);
+//        this.panelSaleRegister.add(gap1, BorderLayout.SOUTH);
+//        this.panelSaleRegister.add(gap2, BorderLayout.CENTER);
+//
+//    }
+//    
+//    private void paintButtonSaleRegister(){
+//        this.buttonRegisterSale.addActionListener(new ButtonRegisterSale(this));
+//    }
 
     private void paintPanel() {
         paintPanelRegisterProduct();
         paintTableStock();
         paintPanelRegister();
-        paintPanelSaleRegister();
+        paintTableRegister();
+        //paintPanelSaleRegister();
     }
 
     private void paintFrame() {
@@ -424,6 +441,7 @@ public class JanelaAbas extends JFrame {
         paintButtonRegisterProduct();
         paintButtonRegisterIndividual();
         paintButtonRegisterLegalEntity();
+        //paintButtonSaleRegister();
 
         this.add(this.tabbedPane, BorderLayout.CENTER);
     }
@@ -689,4 +707,20 @@ public class JanelaAbas extends JFrame {
         this.lineDate = lineDate;
     }
 
+    public JTable getTableRegister() {
+        return tableRegister;
+    }
+
+    public void setTableRegister(JTable tableRegister) {
+        this.tableRegister = tableRegister;
+    }
+
+    public JPanel getPanelTableRegister() {
+        return panelTableRegister;
+    }
+
+    public void setPanelTableRegister(JPanel panelTableRegister) {
+        this.panelTableRegister = panelTableRegister;
+    }
+    
 }

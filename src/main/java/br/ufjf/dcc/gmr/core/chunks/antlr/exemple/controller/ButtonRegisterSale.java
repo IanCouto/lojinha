@@ -6,16 +6,25 @@
 package br.ufjf.dcc.gmr.core.chunks.antlr.exemple.controller;
 
 import br.ufjf.dcc.gmr.core.chunks.antlr.exemple.view.JanelaAbas;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author onofre
  */
-public class ButtonRegisterSale {
-
-    public ButtonRegisterSale() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class ButtonRegisterSale implements ActionListener {
+    private JanelaAbas frame;
+    
+    
+    public ButtonRegisterSale(JanelaAbas frame) {
+        this.frame = frame;
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
+    }
     
 }
