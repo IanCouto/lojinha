@@ -26,10 +26,5 @@
             <artifactId>jung-visualization</artifactId>
             <version>2.1.1</version>
         </dependency>
-        <dependency>
-            <groupId>net.sf.jung</groupId>
-            <artifactId>jung-io</artifactId>
-            <version>2.1.1</version>
-        </dependency>
     </dependencies>
 </project>
