@@ -16,6 +16,9 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.graph.event.GraphEvent;
 import edu.uci.ics.jung.graph.event.GraphEvent.Vertex;
 import edu.uci.ics.jung.visualization.BasicVisualizationServer;
+import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
+import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
@@ -60,13 +63,17 @@ public class Main {
         graph.addEdge(le,loja,e);
         graph.addEdge(lf,loja,f);
         graph.addEdge(de,d,e);
-        
                
+        
         Layout< Vertice, Aresta > layout = new FRLayout<Vertice, Aresta>(graph);
         layout.setSize(new Dimension(300,300)); 
 
         BasicVisualizationServer<Vertice, Aresta> vv = new BasicVisualizationServer<>(layout);
         vv.setPreferredSize(new Dimension(350,350)); 
+        
+        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+        
         JFrame frame = new JFrame("Simple Graph View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(vv);

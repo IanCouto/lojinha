@@ -35,4 +35,7 @@ public class Vertice {
         this.coordY = coordY;
     }
     
+    public String toString() {
+        return "(" + this.coordX + ", " + this.coordY + ")";
+    }
 }

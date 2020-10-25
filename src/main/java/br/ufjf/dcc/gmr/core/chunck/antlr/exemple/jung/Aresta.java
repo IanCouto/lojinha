@@ -18,7 +18,7 @@ public class Aresta {
     private double distance;
     
     public Aresta(Vertice a, Vertice b){
-        this.distance = sqrt(pow(a.getCoordX()-b.getCoordX(),2) + pow(a.getCoordY() - b.getCoordY(),2));
+        this.distance = sqrt(pow(a.getCoordX()- b.getCoordX(),2) + pow(a.getCoordY() - b.getCoordY(),2));
     }
 
     public double getDistance() {
@@ -27,5 +27,10 @@ public class Aresta {
 
     public void setDistance(double distance) {
         this.distance = distance;
+    }
+    
+    @Override
+    public String toString() {
+        return "" + this.distance;
     }
 }
