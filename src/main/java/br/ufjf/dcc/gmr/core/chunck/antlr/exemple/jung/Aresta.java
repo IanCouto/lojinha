@@ -7,6 +7,7 @@ package br.ufjf.dcc.gmr.core.chunck.antlr.exemple.jung;
  
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
+import java.text.DecimalFormat;
 
 
 /**
@@ -16,6 +17,7 @@ import static java.lang.Math.sqrt;
 
 public class Aresta {
     private double distance;
+    DecimalFormat df = new DecimalFormat("###,##0.00");
     
     public Aresta(Vertice a, Vertice b){
         this.distance = sqrt(pow(a.getCoordX()- b.getCoordX(),2) + pow(a.getCoordY() - b.getCoordY(),2));
@@ -31,6 +33,6 @@ public class Aresta {
     
     @Override
     public String toString() {
-        return "" + this.distance;
+        return "" + this.df.format(this.distance);
     }
 }
