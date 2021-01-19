@@ -15,9 +15,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class JanelaAbas extends JFrame {
 
-    private static Stock stock;
-    private static RegisterStock registerStock;
-
     private JTabbedPane tabbedPane;
 
     private JPanel panelRegisterProduct;
@@ -26,7 +23,7 @@ public class JanelaAbas extends JFrame {
     private JTextField lineId;
     private JTextField linePrice;
     private JTextField lineQuantity;
-
+    private static RegisterStock émole;
     private JButton buttonRegisterProduct;
 
     private JTable tableStock;
@@ -43,7 +40,7 @@ public class JanelaAbas extends JFrame {
     private JTextField lineCity;
     private JTextField lineState;
     private JTextField lineCountry;
-    
+
     private JTextField lineDate;
     private JTextField lineEmail;
     private JTextField linePassword;
@@ -55,15 +52,14 @@ public class JanelaAbas extends JFrame {
 
     private JButton buttonRegisterIndividual;
     private JButton buttonRegisterLegalEntity;
-    
+
     private JTable tableRegister;
     private JPanel panelTableRegister;
-    
+
     private JButton buttonRegisterSale;
-    
+
     public JanelaAbas() {
-        JanelaAbas.stock = new Stock();
-        JanelaAbas.registerStock = new RegisterStock();
+        JanelaAbas.émole = new RegisterStock();
 
         this.tabbedPane = new JTabbedPane();
 
@@ -85,7 +81,7 @@ public class JanelaAbas extends JFrame {
         this.lineState = new JTextField("", 50);
         this.lineCountry = new JTextField("", 50);
 
-        this.lineDate = new JTextField("",50);
+        this.lineDate = new JTextField("", 50);
         this.lineEmail = new JTextField("", 50);
         this.linePassword = new JTextField("", 50);
         this.lineDdd = new JTextField("", 50);
@@ -93,14 +89,14 @@ public class JanelaAbas extends JFrame {
 
         this.linePersonName = new JTextField("", 50);
         this.lineSurname = new JTextField("", 50);
-        
+
         this.buttonRegisterIndividual = new JButton("REGISTER INDIVIDUAL");
         this.buttonRegisterLegalEntity = new JButton("REGISTER LEGAL ENTITY");
-        
+
         this.buttonRegisterSale = new JButton("REGISTER SALE");
-        
+
         this.panelTableStock = new JPanel();
-        
+
         this.panelRegister = new JPanel();
         this.panelSaleRegister = new JPanel();
 
@@ -119,8 +115,8 @@ public class JanelaAbas extends JFrame {
     private void paintPanelRegisterProduct() {
         this.panelRegisterProduct.setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel(new GridLayout(10, 1));
-        panel.setPreferredSize(new Dimension(500, 300));
+        JPanel pastelPanel = new JPanel(new GridLayout(10, 1));
+        pastelPanel.setPreferredSize(new Dimension(500, 300));
 
         JPanel gap1 = new JPanel(new BorderLayout());
         gap1.setPreferredSize(new Dimension(300, 250));
@@ -142,28 +138,25 @@ public class JanelaAbas extends JFrame {
 
         JLabel label5 = new JLabel("");
 
-        panel.add(label1);
-        panel.add(this.lineProductName);
-        panel.add(label2);
-        panel.add(this.lineId);
-        panel.add(label3);
-        panel.add(this.linePrice);
-        panel.add(label4);
-        panel.add(this.lineQuantity);
-        panel.add(label5);
-        panel.add(this.buttonRegisterProduct);
+        pastelPanel.add(label1);
+        pastelPanel.add(this.lineProductName);
+        pastelPanel.add(label2);
+        pastelPanel.add(this.lineId);
+        pastelPanel.add(label3);
+        pastelPanel.add(this.linePrice);
+        pastelPanel.add(label4);
+        pastelPanel.add(this.lineQuantity);
+        pastelPanel.add(label5);
+        pastelPanel.add(this.buttonRegisterProduct);
 
-        this.panelRegisterProduct.add(panel, BorderLayout.WEST);
+        this.panelRegisterProduct.add(pastelPanel, BorderLayout.WEST);
         this.panelRegisterProduct.add(gap1, BorderLayout.SOUTH);
         this.panelRegisterProduct.add(gap2, BorderLayout.CENTER);
 
     }
 
-    public void addProduct() throws Exception {
-        if (lineProductName.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "EMPTY FIELD");
-            throw new Exception();
-        } else if (lineId.getText().equals("")) {
+    public void addProdutoresRurais() throws Exception {
+        if (lineId.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
         } else if (linePrice.getText().equals("") || Double.parseDouble(linePrice.getText()) <= 0) {
@@ -172,10 +165,8 @@ public class JanelaAbas extends JFrame {
         } else if (lineQuantity.getText().equals("") || Integer.parseInt(lineQuantity.getText()) <= 0) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        } else {
-            Product product = new Product(Double.parseDouble(linePrice.getText()), lineProductName.getText(), lineId.getText());
-            JanelaAbas.stock.addProduct(product, Integer.parseInt(lineQuantity.getText()));
         }
+
     }
 
     private void paintButtonRegisterProduct() {
@@ -190,15 +181,15 @@ public class JanelaAbas extends JFrame {
         model.addColumn("ID");
         model.addColumn("PRICE");
         model.addColumn("QUANTITY");
-        
+
         this.tableStock.setModel(model);
         this.tableStock.setVisible(true);
         this.panelTableStock.add(new JScrollPane(this.tableStock), BorderLayout.CENTER);
     }
-    
-    private void paintPanelRegister(){
+
+    private void paintPanelRegister() {
         this.panelRegister.setLayout(new BorderLayout());
-        
+
         JPanel panel1 = new JPanel(new GridLayout(20, 1));
         panel1.setPreferredSize(new Dimension(500, 300));
 
@@ -234,7 +225,7 @@ public class JanelaAbas extends JFrame {
 
         JLabel label9 = new JLabel("SURNAME:");
         label9.setVerticalAlignment(SwingConstants.BOTTOM);
-        
+
         JLabel label13 = new JLabel("EMAIL:");
         label13.setVerticalAlignment(SwingConstants.BOTTOM);
 
@@ -291,81 +282,67 @@ public class JanelaAbas extends JFrame {
         this.panelRegister.add(panel2, BorderLayout.CENTER);
         this.panelRegister.add(gap2, BorderLayout.EAST);
     }
-    
+
     public void addPerson(int num) throws Exception {
-        
-        if(lineNumber.getText().equals("") || Integer.parseInt(lineNumber.getText()) <= 0){
+
+        if (lineNumber.getText().equals("") || Integer.parseInt(lineNumber.getText()) <= 0) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (lineStreet.getText().equals("")){
+        } else if (lineStreet.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (lineNeighborhood.getText().equals("")){
+        } else if (lineNeighborhood.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (lineCep.getText().equals("")){
+        } else if (lineCep.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (lineCity.getText().equals("")){
+        } else if (lineCity.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (lineState.getText().equals("")){
+        } else if (lineState.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (lineCountry.getText().equals("")){
+        } else if (lineCountry.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (linePersonName.getText().equals("")){
+        } else if (linePersonName.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (lineSurname.getText().equals("")){
+        } else if (lineSurname.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (lineEmail.getText().equals("")){
+        } else if (lineEmail.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (linePassword.getText().equals("")){
+        } else if (linePassword.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (lineDdd.getText().equals("")){
+        } else if (lineDdd.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else if (linePhoneNumber.getText().equals("")){
+        } else if (linePhoneNumber.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        }
-        else {
-            if(num == 1) {
+        } else {
+            if (num == 1) {
                 DesktopIndividual di = new DesktopIndividual(this);
                 di.paintFrame();
-            } 
-            else if (num == 2) {
+            } else if (num == 2) {
                 DesktopLegalEntity dl = new DesktopLegalEntity(this);
                 dl.paintFrame();
             }
         }
     }
-    
+
     private void paintButtonRegisterIndividual() {
         this.buttonRegisterIndividual.addActionListener(new ButtonRegisterPerson(this, 1));
     }
-    
+
     private void paintButtonRegisterLegalEntity() {
         this.buttonRegisterLegalEntity.addActionListener(new ButtonRegisterPerson(this, 2));
     }
-    
+
     private void paintTableRegister() {
         this.panelTableRegister.setLayout(new BorderLayout());
 
@@ -374,12 +351,12 @@ public class JanelaAbas extends JFrame {
         model.addColumn("Surname");
         model.addColumn("EMAIL");
         model.addColumn("PHONE NUMBER");
-        
+
         this.tableRegister.setModel(model);
         this.tableRegister.setVisible(true);
         this.panelTableRegister.add(new JScrollPane(this.tableRegister), BorderLayout.CENTER);
     }
-    
+
 //    private void paintPanelSaleRegister() {
 //        this.panelSaleRegister.setLayout(new BorderLayout());
 //
@@ -426,7 +403,6 @@ public class JanelaAbas extends JFrame {
 //    private void paintButtonSaleRegister(){
 //        this.buttonRegisterSale.addActionListener(new ButtonRegisterSale(this));
 //    }
-
     private void paintPanel() {
         paintPanelRegisterProduct();
         paintTableStock();
@@ -459,22 +435,14 @@ public class JanelaAbas extends JFrame {
 
     }
 
-    public static Stock getStock() {
-        return stock;
-    }
-
-    public static void setStock(Stock stock) {
-        JanelaAbas.stock = stock;
-    }
-
     public static RegisterStock getRegisterStock() {
-        return registerStock;
+        return émole;
     }
 
     public static void setRegisterStock(RegisterStock registerStock) {
-        JanelaAbas.registerStock = registerStock;
+        JanelaAbas.émole = registerStock;
     }
-    
+
     public JTabbedPane getTabbedPane() {
         return tabbedPane;
     }
@@ -539,7 +507,7 @@ public class JanelaAbas extends JFrame {
         this.panelTableStock = panelBlue;
     }
 
-    public JPanel getPanelSaleRegister(){
+    public JPanel getPanelSaleRegister() {
         return panelSaleRegister;
     }
 
@@ -554,7 +522,6 @@ public class JanelaAbas extends JFrame {
 //    public void setPanelRegisterLegalEntity(JPanel panelRegisterLegalEntity) {
 //        this.panelRegisterLegalEntity = panelRegisterLegalEntity;
 //    }
-
     public JTextField getLineNumber() {
         return lineNumber;
     }
@@ -722,5 +689,5 @@ public class JanelaAbas extends JFrame {
     public void setPanelTableRegister(JPanel panelTableRegister) {
         this.panelTableRegister = panelTableRegister;
     }
-    
+
 }
