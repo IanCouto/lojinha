@@ -15,12 +15,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class JanelaAbas extends JFrame {
 
-    private static Stock stock;
-    private static RegisterStock registerStock;
-
     private JTabbedPane tabbedPane;
 
     private JPanel panelRegisterProduct;
+    
+    static Stock stock;
+    static RegisterStock registerStock;
+
+   
 
     private JTextField lineProductName;
     private JTextField lineId;
@@ -119,8 +121,8 @@ public class JanelaAbas extends JFrame {
     private void paintPanelRegisterProduct() {
         this.panelRegisterProduct.setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel(new GridLayout(10, 1));
-        panel.setPreferredSize(new Dimension(500, 300));
+        JPanel panelDependency = new JPanel(new GridLayout(10, 1));
+        panelDependency.setPreferredSize(new Dimension(500, 300));
 
         JPanel gap1 = new JPanel(new BorderLayout());
         gap1.setPreferredSize(new Dimension(300, 250));
@@ -142,24 +144,24 @@ public class JanelaAbas extends JFrame {
 
         JLabel label5 = new JLabel("");
 
-        panel.add(label1);
-        panel.add(this.lineProductName);
-        panel.add(label2);
-        panel.add(this.lineId);
-        panel.add(label3);
-        panel.add(this.linePrice);
-        panel.add(label4);
-        panel.add(this.lineQuantity);
-        panel.add(label5);
-        panel.add(this.buttonRegisterProduct);
+        panelDependency.add(label1);
+        panelDependency.add(this.lineProductName);
+        panelDependency.add(label2);
+        panelDependency.add(this.lineId);
+        panelDependency.add(label3);
+        panelDependency.add(this.linePrice);
+        panelDependency.add(label4);
+        panelDependency.add(this.lineQuantity);
+        panelDependency.add(label5);
+        panelDependency.add(this.buttonRegisterProduct);
 
-        this.panelRegisterProduct.add(panel, BorderLayout.WEST);
+        this.panelRegisterProduct.add(panelDependency, BorderLayout.WEST);
         this.panelRegisterProduct.add(gap1, BorderLayout.SOUTH);
         this.panelRegisterProduct.add(gap2, BorderLayout.CENTER);
 
     }
 
-    public void addProduct() throws Exception {
+    public void addProductDependency() throws Exception {
         if (lineProductName.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();

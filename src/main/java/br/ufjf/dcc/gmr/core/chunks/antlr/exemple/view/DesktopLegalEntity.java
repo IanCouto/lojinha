@@ -14,11 +14,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.*;
 
-/**
- *
- * @author DELL
- */
 public class DesktopLegalEntity extends JFrame{
+    
     private JanelaAbas frame;
     
     private JPanel panel;
@@ -40,6 +37,7 @@ public class DesktopLegalEntity extends JFrame{
     }
     
     private void paintPanel(){
+        System.out.println(JanelaAbas.stock.toString());
         this.panel.setLayout(new GridLayout(6,1));
         
         JLabel label1 = new JLabel("CNPJ: ");
