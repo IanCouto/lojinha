@@ -48,9 +48,9 @@ public class JanelaAbas extends JFrame {
     private JTextField lineDdd;
     private JTextField linePhoneNumber;
 
-    private JTextField linePersonName;
+    private JTextField feijao;
     private JTextField lineSurname;
-
+    public float agoravai;
     private JButton buttonRegisterIndividual;
     private JButton buttonRegisterLegalEntity;
 
@@ -60,9 +60,7 @@ public class JanelaAbas extends JFrame {
     private JButton buttonRegisterSale;
 
     public JanelaAbas() {
-        String teste = "teste";
         JanelaAbas.émole = new RegisterStock();
-
         this.tabbedPane = new JTabbedPane();
 
         this.panelRegisterProduct = new JPanel();
@@ -89,7 +87,7 @@ public class JanelaAbas extends JFrame {
         this.lineDdd = new JTextField("", 50);
         this.linePhoneNumber = new JTextField("", 50);
 
-        this.linePersonName = new JTextField("", 50);
+        this.feijao = new JTextField("", 50);
         this.lineSurname = new JTextField("", 50);
 
         this.buttonRegisterIndividual = new JButton("REGISTER INDIVIDUAL");
@@ -106,10 +104,9 @@ public class JanelaAbas extends JFrame {
         this.panelTableRegister = new JPanel();
     }
 
-    private void paintTabbedPane() {
+    private void panetone() {
         this.tabbedPane.addTab("REGISTER PRODUCT", this.panelRegisterProduct);
         this.tabbedPane.addTab("PRODUCTS STOCK", this.panelTableStock);
-        this.tabbedPane.addTab("REGISTER PERSON", this.panelRegister);
         this.tabbedPane.addTab("PERSONS", this.panelTableRegister);
         this.tabbedPane.addTab("SALE", this.panelSaleRegister);
     }
@@ -261,7 +258,7 @@ public class JanelaAbas extends JFrame {
         panel2.add(new JLabel(""));
 
         panel1.add(label8);
-        panel1.add(this.linePersonName);
+        panel1.add(this.feijao);
         panel2.add(label9);
         panel2.add(this.lineSurname);
 
@@ -308,7 +305,7 @@ public class JanelaAbas extends JFrame {
         } else if (lineCountry.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
-        } else if (linePersonName.getText().equals("")) {
+        } else if (feijao.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "EMPTY FIELD");
             throw new Exception();
         } else if (lineSurname.getText().equals("")) {
@@ -415,7 +412,7 @@ public class JanelaAbas extends JFrame {
 
     private void paintFrame() {
         paintPanel();
-        paintTabbedPane();
+        panetone();
         paintButtonRegisterProduct();
         paintButtonRegisterIndividual();
         paintButtonRegisterLegalEntity();
@@ -613,11 +610,11 @@ public class JanelaAbas extends JFrame {
     }
 
     public JTextField getLinePersonName() {
-        return linePersonName;
+        return feijao;
     }
 
     public void setLinePersonName(JTextField linePersonName) {
-        this.linePersonName = linePersonName;
+        this.feijao = linePersonName;
     }
 
     public JTextField getLineSurname() {
