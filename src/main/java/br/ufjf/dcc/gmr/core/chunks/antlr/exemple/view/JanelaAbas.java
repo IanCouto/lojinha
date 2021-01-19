@@ -42,15 +42,23 @@ public class JanelaAbas extends JFrame {
     private JTextField lineState;
     private JTextField lineCountry;
 
+    
+    
+    
     private JTextField lineDate;
     private JTextField lineEmail;
     private JTextField linePassword;
     private JTextField lineDdd;
     private JTextField linePhoneNumber;
-
+    String geraConflito = "conflito";
+    
     private JTextField linePersonName;
     private JTextField lineSurname;
-
+    
+    
+    String geraConflito1 = "conflito";
+    
+    String geraConflito2 = "conflito";
     private JButton buttonRegisterIndividual;
     private JButton buttonRegisterLegalEntity;
 
@@ -60,7 +68,7 @@ public class JanelaAbas extends JFrame {
     private JButton buttonRegisterSale;
 
     public JanelaAbas() {
-        String teste = "teste";
+        String test = "teste";
         JanelaAbas.émole = new RegisterStock();
 
         this.tabbedPane = new JTabbedPane();
