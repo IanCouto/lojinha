@@ -30,7 +30,7 @@ public class ButtonRegisterStock implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            this.panel.addProductDependency();
+            this.panel.addProdutoresRurais();
             
             String name = this.panel.getLineProductName().getText();
             String id = this.panel.getLineId().getText();
