@@ -60,6 +60,7 @@ public class JanelaAbas extends JFrame {
     private JButton buttonRegisterSale;
 
     public JanelaAbas() {
+        String teste = "teste";
         JanelaAbas.émole = new RegisterStock();
 
         this.tabbedPane = new JTabbedPane();
